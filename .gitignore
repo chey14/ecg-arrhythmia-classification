@@ -1,0 +1,28 @@
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Virtual environment and secrets
+.venv/
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# ECG dataset and generated data
+data/*
+!data/.gitkeep
+
+# Trained models and generated results
+models/
+outputs/
+*.joblib
+*.pth
+*.pt
+
+# Editor and operating system files
+.vscode/
+.DS_Store
+Thumbs.db
