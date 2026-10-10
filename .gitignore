@@ -33,3 +33,8 @@ __pycache__/
 .venv/
 .DS_Store
 ecg_plot.png
+# Allow only the files required for the public Streamlit demo
+!models/
+models/*
+!models/ecg_cnn_final.pth
+!app/demo_heartbeats.npz
