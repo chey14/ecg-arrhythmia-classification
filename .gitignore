@@ -26,3 +26,4 @@ outputs/
 .vscode/
 .DS_Store
 Thumbs.db
+ecg_plot.png
