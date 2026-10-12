@@ -6,6 +6,7 @@ import numpy as np
 import streamlit as st
 import torch
 from torch import nn
+from monitoring import render_ecg_monitoring
 
 
 # Paths are relative to the project root.
@@ -93,8 +94,17 @@ if not DATA_PATH.exists() or not MODEL_PATH.exists():
 X, y_true, groups = load_dataset()
 model = load_model()
 
-recordings = sorted(np.unique(groups).tolist())
-selected_record = st.selectbox("Select recording", recordings)
+recordings = sorted(np.unique(groups).tolist(), key=lambda x: int(x))
+
+recording_names = {
+    record: f"TX_{i + 1}"
+    for i, record in enumerate(recordings)
+}
+selected_record = st.selectbox(
+    "Select recording",
+    recordings,
+    format_func=lambda record: recording_names[record],
+)
 
 indices = np.flatnonzero(groups == selected_record)
 selected_index = st.selectbox(
@@ -149,3 +159,6 @@ if st.button("Classify heartbeat", type="primary"):
         }
     )
 
+st.divider()
+st.header("ECG Monitoring — Random Forest")
+render_ecg_monitoring("models/random_forest.joblib")
