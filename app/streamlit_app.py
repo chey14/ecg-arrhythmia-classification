@@ -79,10 +79,7 @@ st.set_page_config(
 )
 
 st.title("ECG Heartbeat Classification")
-st.write(
-    "An educational machine-learning prototype using the MIT-BIH "
-    "Arrhythmia Database."
-)
+
 
 
 
@@ -103,7 +100,7 @@ indices = np.flatnonzero(groups == selected_record)
 selected_index = st.selectbox(
     "Select heartbeat within this recording",
     indices.tolist(),
-    format_func=lambda i: f"Heartbeat {i} — reference class {y_true[i]}",
+    format_func=lambda i: f"Heartbeat {i}",
 )
 
 signal = X[selected_index]
@@ -140,11 +137,7 @@ if st.button("Classify heartbeat", type="primary"):
     st.write(CLASS_DESCRIPTIONS[predicted_label])
     st.write(f"Reference annotation: **{y_true[selected_index]}**")
 
-    st.caption(
-        "The reference annotation is the dataset's label for this beat. "
-        "The model's softmax scores are not clinically calibrated "
-        "probabilities."
-    )
+    
 
     st.subheader("Model scores")
     st.bar_chart(
